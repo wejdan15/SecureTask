@@ -1,0 +1,63 @@
+<div class="page">
+
+  <nav class="navbar">
+    <div class="logo">🔐 SecureTask</div>
+
+    <div class="nav-links">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/tasks">Tasks</a>
+      <a href="/login">Logout</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <div class="header">
+      <div>
+        <h1>Security Tasks</h1>
+        <p>Manage your cybersecurity tasks</p>
+      </div>
+
+      <button class="add-btn" (click)="addTask()">
+        + Add Task
+      </button>
+    </div>
+<p>Nombre de tâches : {{ tasks.length }}</p>
+<pre>{{ tasks | json }}</pre>
+    <div
+      class="task-card"
+      *ngFor="let task of tasks"
+    >
+
+      <div class="task-info">
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+      </div>
+
+      <span
+        [class.pending]="!task.completed"
+        [class.completed]="task.completed"
+      >
+        {{ task.completed ? 'Completed' : 'Pending' }}
+      </span>
+
+      <button
+        *ngIf="!task.completed"
+        class="complete-btn"
+        (click)="completeTask(task.id)"
+      >
+        Complete
+      </button>
+
+      <button
+        class="delete-btn"
+        (click)="deleteTask(task.id)"
+      >
+        Delete
+      </button>
+
+    </div>
+
+  </main>
+
+</div>

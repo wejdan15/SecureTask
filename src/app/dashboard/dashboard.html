@@ -1,0 +1,74 @@
+<div class="dashboard-page">
+
+  <header class="navbar">
+    <div class="brand">🔐 SecureTask</div>
+
+    <nav>
+      <a class="active">Dashboard</a>
+      <a routerLink="/tasks">Tasks</a>
+      <a routerLink="/login">Logout</a>
+    </nav>
+  </header>
+
+  <main class="dashboard-container">
+
+    <div class="welcome">
+      <h1>Security Dashboard</h1>
+      <p>Welcome back, Administrator 👋</p>
+    </div>
+
+    <div class="stats">
+
+      <div class="stat-card">
+        <h3>Total Tasks</h3>
+        <span>5</span>
+      </div>
+
+      <div class="stat-card">
+        <h3>Pending</h3>
+        <span>3</span>
+      </div>
+
+      <div class="stat-card">
+        <h3>Completed</h3>
+        <span>2</span>
+      </div>
+
+    </div>
+
+    <div class="task-section">
+
+      <div class="section-header">
+        <h2>Recent Security Tasks</h2>
+        <a routerLink="/tasks" class="view-button">View Tasks</a>
+      </div>
+
+      <div class="task">
+        <div>
+          <strong>Security Audit</strong>
+          <p>Review application security configuration</p>
+        </div>
+        <span class="pending">Pending</span>
+      </div>
+
+      <div class="task">
+        <div>
+          <strong>Update Firewall</strong>
+          <p>Apply the latest firewall rules</p>
+        </div>
+        <span class="completed">Completed</span>
+      </div>
+
+      <div class="task">
+        <div>
+          <strong>Check Security Logs</strong>
+          <p>Review suspicious authentication attempts</p>
+        </div>
+        <span class="pending">Pending</span>
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
