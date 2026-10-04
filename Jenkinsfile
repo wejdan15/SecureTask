@@ -10,7 +10,7 @@ pipeline {
 
         stage('Check Gitleaks') {
             steps {
-                bat 'gitleaks version'
+               bat '"C:\\Users\\telli\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks.exe" version'
             }
         }
     }
