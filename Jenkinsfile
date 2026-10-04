@@ -7,5 +7,11 @@ pipeline {
                 echo 'SecureTask DevSecOps Pipeline fonctionne !'
             }
         }
+
+        stage('Check Gitleaks') {
+            steps {
+                bat 'gitleaks version'
+            }
+        }
     }
 }
