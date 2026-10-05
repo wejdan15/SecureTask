@@ -40,5 +40,11 @@ pipeline {
             }
         }
 
+        stage('docker_build') {
+            steps {
+                bat 'docker build -t securetask-backend ./backend'
+            }
+        }
+
     }
 }
