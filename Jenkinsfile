@@ -34,5 +34,11 @@ pipeline {
             }
         }
 
+        stage('scan_dependencies') {
+            steps {
+                bat '"C:\\Users\\telli\\AppData\\Local\\Microsoft\\WinGet\\Links\\trivy.exe" fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 .'
+            }
+        }
+
     }
 }
