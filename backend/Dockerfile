@@ -17,6 +17,8 @@ COPY server.js ./
 RUN rm -rf /usr/local/lib/node_modules/npm \
     /opt/yarn-v1.22.22
 
+USER node
+
 EXPOSE 3000
 
 CMD ["node", "server.js"]
