@@ -1,14 +1,23 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const helmet = require('helmet');
 
 const app = express();
+
+// Sécurité HTTP avec Helmet
+app.use(helmet());
+
+// Masquer l'information "Express" dans X-Powered-By
+app.disable('x-powered-by');
+
 const PORT = 3000;
 
-// Middleware
+// Middleware CORS
 app.use(cors({
   origin: 'http://localhost:4200'
 }));
+
 app.use(express.json());
 
 // Connexion MySQL
@@ -42,6 +51,7 @@ app.get('/api/tasks', (req, res) => {
 
     if (err) {
       console.error('❌ Erreur récupération tâches :', err);
+
       return res.status(500).json({
         error: 'Erreur serveur'
       });
@@ -50,6 +60,7 @@ app.get('/api/tasks', (req, res) => {
     res.json(results);
   });
 });
+
 // Ajouter une nouvelle tâche
 app.post('/api/tasks', (req, res) => {
 
@@ -64,6 +75,7 @@ app.post('/api/tasks', (req, res) => {
 
     if (err) {
       console.error('Erreur ajout tâche :', err);
+
       return res.status(500).json({
         error: 'Erreur serveur'
       });
@@ -75,9 +87,7 @@ app.post('/api/tasks', (req, res) => {
       description: description,
       completed: 0
     });
-
   });
-
 });
 
 // Marquer une tâche comme terminée
@@ -91,6 +101,7 @@ app.put('/api/tasks/:id/complete', (req, res) => {
 
     if (err) {
       console.error('Erreur modification tâche :', err);
+
       return res.status(500).json({
         error: 'Erreur serveur'
       });
@@ -99,10 +110,10 @@ app.put('/api/tasks/:id/complete', (req, res) => {
     res.json({
       message: 'Tâche terminée'
     });
-
   });
-
 });
+
+// Démarrer le backend
 app.listen(PORT, () => {
   console.log(`🚀 Backend démarré sur http://localhost:${PORT}`);
 });
