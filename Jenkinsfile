@@ -58,13 +58,12 @@ pipeline {
                 bat '"C:\\Users\\telli\\AppData\\Local\\Microsoft\\WinGet\\Links\\trivy.exe" image --severity HIGH,CRITICAL --exit-code 1 securetask-backend'
             }
         }
-
-        // 7. DAST avec OWASP ZAP
-        stage('dast') {
-            steps {
-                bat 'docker run --rm -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://host.docker.internal:3000 -I'
-            }
-        }
+// 7. DAST avec OWASP ZAP + rapports
+stage('dast') {
+    steps {
+        bat 'docker run --rm -t -v "%CD%:/zap/wrk/:rw" ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://host.docker.internal:3000 -r zap-report.html -J zap-report.json -I'
+    }
+}
     }
 
     post {
