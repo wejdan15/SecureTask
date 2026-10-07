@@ -65,14 +65,21 @@ stage('dast') {
     }
 }
     }
+post {
+    success {
+        echo 'Pipeline DevSecOps SecureTask terminé avec succès.'
 
-    post {
-        success {
-            echo 'Pipeline DevSecOps SecureTask terminé avec succès.'
-        }
-
-        failure {
-            echo 'Pipeline bloqué : un contrôle de sécurité a échoué.'
-        }
+        mail to: 'wejdantelli07@gmail.com',
+             subject: "SUCCESS - SecureTask Build #${BUILD_NUMBER}",
+             body: "Le pipeline DevSecOps SecureTask a réussi.\nBuild : ${BUILD_NUMBER}\nJenkins : ${BUILD_URL}"
     }
+
+    failure {
+        echo 'Pipeline bloqué : un contrôle de sécurité a échoué.'
+
+        mail to: 'wejdantelli07@gmail.com',
+             subject: "FAILED - SecureTask Build #${BUILD_NUMBER}",
+             body: "Le pipeline SecureTask a été bloqué par un contrôle de sécurité.\nBuild : ${BUILD_NUMBER}\nJenkins : ${BUILD_URL}"
+    }
+}
 }
