@@ -46,5 +46,11 @@ pipeline {
             }
         }
 
+        stage('docker_scan') {
+            steps {
+                bat '"C:\\Users\\telli\\AppData\\Local\\Microsoft\\WinGet\\Links\\trivy.exe" image --severity HIGH,CRITICAL --exit-code 1 securetask-backend'
+            }
+        }
+
     }
 }
